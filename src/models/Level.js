@@ -8,10 +8,8 @@ const LevelSchema = new Schema({
         required: true,
         unique: true,
     },
-    bigSkillId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'BigSkill',
-        required: true,
+    bigSkill: {
+        type: Object,
     }
 }, 
 {

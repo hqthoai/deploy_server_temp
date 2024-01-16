@@ -1,12 +1,12 @@
-const Book = require('../models/Book');
+const Part = require('../models/Part');
 
-const BookController = {
+const PartController = {
     getAll: (req, res) => {
-        Book.find({})
-        .then((books) => {
-           res.status(200).json(books);
+        Part.find({})
+        .then((parts) => {
+           res.status(200).json(parts);
         }).catch((err) => {
-            console.log('Error getting all books:', err);
+            console.log('Error getting all parts:', err);
             res.status(500).json({
                 message: 'Server error: ' + err.message,
                 err: err
@@ -15,11 +15,11 @@ const BookController = {
     },
 
     getById: (req, res) => {
-        Book.findOne({_id: req.params.id})
-        .then((book) => {
-           res.status(200).json(book);
+        Part.findOne({_id: req.params.id})
+        .then((part) => {
+           res.status(200).json(part);
         }).catch((err) => {
-            console.log('Error getting a book:', err);
+            console.log('Error getting a part:', err);
             res.status(500).json({
                 message: 'Server error: ' + err.message,
                 err: err
@@ -28,12 +28,12 @@ const BookController = {
     },
 
     create: (req, res) => {
-        Book.create({...req.body})
-        .then((book) => {
-            res.status(201).json(book);
+        Part.create({...req.body})
+        .then((part) => {
+            res.status(201).json(part);
         })
         .catch((err) => {
-            console.log('Error creating book:', err);
+            console.log('Error creating part:', err);
             res.status(500).json({
                 message: 'Server error: ' + err.message,
                 err: err
@@ -42,12 +42,12 @@ const BookController = {
     },
 
     update: (req, res) => {
-        Book.findOneAndUpdate({_id: req.params.id}, ...req.body)
-        .then((book)=>{
-            res.status(200).json(book)
+        Part.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        .then((part)=>{
+            res.status(200).json(part)
         })
         .catch((err)=>{
-            console.log('Error updating book:', err);
+            console.log('Error updating part:', err);
             res.status(500).json({
                 message: 'Server error: ' + err.message,
                 err: err
@@ -56,12 +56,12 @@ const BookController = {
     },
 
     delete: (req, res) => {
-        Book.findOneAndDelete({_id: req.params.id})
+        Part.findOneAndDelete({_id: req.params.id})
         .then(()=>{
             res.status(200).json("Delete successfully!")
         })
         .catch((err) => {
-            console.log('Error deleting book:', err);
+            console.log('Error deleting part:', err);
             res.status(500).json({
                 message: 'Server error: ' + err.message,
                 err: err
@@ -71,4 +71,4 @@ const BookController = {
     
 }
 
-module.exports = BookController;
+module.exports = PartController;

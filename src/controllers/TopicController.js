@@ -28,9 +28,10 @@ const TopicController = {
     },
 
     getByName: (req, res) => {
-        Topic.findOne({name: { $regex: req.query.q, $options: 'i' }})
-        .then((topic) => {
-           res.status(200).json(topic);
+        Topic.find({name: { $regex: req.query.q, $options: 'i' }})
+        .populate("bookId","name")
+        .then((topics) => {
+           res.status(200).json(topics);
         }).catch((err) => {
             console.log('Error getting a topic:', err);
             res.status(500).json({

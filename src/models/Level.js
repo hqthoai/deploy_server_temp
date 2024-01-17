@@ -9,7 +9,7 @@ const LevelSchema = new Schema({
         unique: true,
     },
     bigSkill: {
-        type: Object,
+        type: String,
     }
 }, 
 {

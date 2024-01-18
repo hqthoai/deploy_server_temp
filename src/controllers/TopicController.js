@@ -29,7 +29,7 @@ const TopicController = {
 
     getByName: (req, res) => {
         Topic.find({name: { $regex: req.query.q, $options: 'i' }})
-        .populate("bookId","name")
+        .populate("bookId","name image")
         .then((topics) => {
            res.status(200).json(topics);
         }).catch((err) => {

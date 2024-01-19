@@ -31,6 +31,32 @@ const ExcerciseController = {
         });
     },
 
+    getByPartId: (req, res) => {
+        Excercise.find({partId: req.params.id})
+        .then((excercises) => {
+           res.status(200).json(excercises);
+        }).catch((err) => {
+            console.log('Error getting a excercise:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
+    getBySkillId: (req, res) => {
+        Excercise.find({skillId: req.params.id})
+        .then((excercises) => {
+           res.status(200).json(excercises);
+        }).catch((err) => {
+            console.log('Error getting a excercise:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
     create: (req, res) => {
         Excercise.create({...req.body})
         .then((excercise) => {

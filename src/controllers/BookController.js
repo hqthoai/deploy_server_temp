@@ -27,6 +27,19 @@ const BookController = {
         });
     },
 
+    getByLevelId: (req, res) => {
+        Book.find({levelId: req.params.id})
+        .then((books) => {
+           res.status(200).json(books);
+        }).catch((err) => {
+            console.log('Error getting a book:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
     create: (req, res) => {
         Book.create({...req.body})
         .then((book) => {

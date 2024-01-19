@@ -27,6 +27,19 @@ const QuestionController = {
         });
     },
 
+    getByExerciseId: (req, res) => {
+        Question.find({excerciseId: req.params.id})
+        .then((questions) => {
+           res.status(200).json(questions);
+        }).catch((err) => {
+            console.log('Error getting a question:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
     create: (req, res) => {
         Question.create({...req.body})
         .then((question) => {

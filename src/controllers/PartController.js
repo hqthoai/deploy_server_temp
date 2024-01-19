@@ -29,6 +29,19 @@ const PartController = {
         });
     },
 
+    getByTopicId: (req, res) => {
+        Part.find({topicId: req.params.id})
+        .then((parts) => {
+           res.status(200).json(parts);
+        }).catch((err) => {
+            console.log('Error getting a part:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
     create: (req, res) => {
         Part.create({...req.body})
         .then((part) => {

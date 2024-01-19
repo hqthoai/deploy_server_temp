@@ -29,6 +29,19 @@ const SkillController = {
         });
     },
 
+    getByPartId: (req, res) => {
+        Skill.find({partId: req.params.id})
+        .then((skills) => {
+           res.status(200).json(skills);
+        }).catch((err) => {
+            console.log('Error getting a skill:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
     create: (req, res) => {
         Skill.create({...req.body})
         .then((skill) => {

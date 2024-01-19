@@ -41,6 +41,19 @@ const TopicController = {
         });
     },
 
+    getByBookId: (req, res) => {
+        Topic.find({bookId: req.params.id})
+        .then((topic) => {
+           res.status(200).json(topic);
+        }).catch((err) => {
+            console.log('Error getting a topic:', err);
+            res.status(500).json({
+                message: 'Server error: ' + err.message,
+                err: err
+            });
+        });
+    },
+
     create: (req, res) => {
         Topic.create({...req.body})
         .then((topic) => {

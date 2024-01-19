@@ -6,7 +6,6 @@ const PartSchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
     },
     record: {
         type: String,

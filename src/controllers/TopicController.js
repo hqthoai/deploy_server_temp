@@ -56,7 +56,7 @@ const TopicController = {
     },
 
     update: (req, res) => {
-        Topic.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Topic.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((topic)=>{
             res.status(200).json(topic)
         })

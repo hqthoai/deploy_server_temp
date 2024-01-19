@@ -42,7 +42,7 @@ const DocumentController = {
     },
 
     update: (req, res) => {
-        Document.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Document.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((document)=>{
             res.status(200).json(document)
         })

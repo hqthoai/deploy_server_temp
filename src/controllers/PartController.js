@@ -3,6 +3,7 @@ const Part = require('../models/Part');
 const PartController = {
     getAll: (req, res) => {
         Part.find({})
+        .populate("topicId", "name")
         .then((parts) => {
            res.status(200).json(parts);
         }).catch((err) => {
@@ -16,6 +17,7 @@ const PartController = {
 
     getById: (req, res) => {
         Part.findOne({_id: req.params.id})
+        .populate("topicId", "name")
         .then((part) => {
            res.status(200).json(part);
         }).catch((err) => {
@@ -42,7 +44,7 @@ const PartController = {
     },
 
     update: (req, res) => {
-        Part.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Part.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((part)=>{
             res.status(200).json(part)
         })

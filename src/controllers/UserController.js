@@ -42,7 +42,7 @@ const UserController = {
     },
 
     update: (req, res) => {
-        User.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        User.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((user)=>{
             res.status(200).json(user)
         })

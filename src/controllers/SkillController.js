@@ -3,6 +3,7 @@ const Skill = require('../models/Skill');
 const SkillController = {
     getAll: (req, res) => {
         Skill.find({})
+        .populate("partId", "name")
         .then((skills) => {
            res.status(200).json(skills);
         }).catch((err) => {
@@ -16,6 +17,7 @@ const SkillController = {
 
     getById: (req, res) => {
         Skill.findOne({_id: req.params.id})
+        .populate("partId", "name")
         .then((skill) => {
            res.status(200).json(skill);
         }).catch((err) => {
@@ -42,7 +44,7 @@ const SkillController = {
     },
 
     update: (req, res) => {
-        Skill.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Skill.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((skill)=>{
             res.status(200).json(skill)
         })

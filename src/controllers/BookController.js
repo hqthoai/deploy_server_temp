@@ -42,7 +42,7 @@ const BookController = {
     },
 
     update: (req, res) => {
-        Book.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Book.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((book)=>{
             res.status(200).json(book)
         })

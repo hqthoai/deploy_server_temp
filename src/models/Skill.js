@@ -6,15 +6,14 @@ const SkillSchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
     },
     record: {
         type: String,
         required: true,
     },
-    topicId: {
+    partId: {
         type: mongoose.Types.ObjectId,
-        ref: 'Topic',
+        ref: 'Part',
         required: true,
     }
 }, 

@@ -16,7 +16,10 @@ const ExcerciseSchema = new Schema({
         ref: 'Skill',
     },
     excerciseType: {
-        type: Object,
+        type: String,
+    },
+    ordinalNumber: {
+        type: String,
     }
 }, 
 {

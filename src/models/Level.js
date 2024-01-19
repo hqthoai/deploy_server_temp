@@ -6,7 +6,6 @@ const LevelSchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
     },
     bigSkill: {
         type: String,

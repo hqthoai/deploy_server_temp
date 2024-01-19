@@ -3,10 +3,6 @@ const mongooseDelete = require('mongoose-delete');
 
 const Schema = mongoose.Schema;
 const QuestionSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-    },
     excerciseId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Excercise',

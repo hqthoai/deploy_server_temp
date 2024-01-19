@@ -42,7 +42,7 @@ const LevelController = {
     },
 
     update: (req, res) => {
-        Level.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Level.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((level)=>{
             res.status(200).json(level)
         })

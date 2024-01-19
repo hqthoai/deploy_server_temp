@@ -3,6 +3,8 @@ const Excercise = require('../models/Excercise');
 const ExcerciseController = {
     getAll: (req, res) => {
         Excercise.find({})
+        .populate("partId", "name")
+        .populate("skillId", "name")
         .then((excercises) => {
            res.status(200).json(excercises);
         }).catch((err) => {
@@ -16,6 +18,8 @@ const ExcerciseController = {
 
     getById: (req, res) => {
         Excercise.findOne({_id: req.params.id})
+        .populate("partId", "name")
+        .populate("skillId", "name")
         .then((excercise) => {
            res.status(200).json(excercise);
         }).catch((err) => {
@@ -42,7 +46,7 @@ const ExcerciseController = {
     },
 
     update: (req, res) => {
-        Excercise.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Excercise.findOneAndUpdate({_id: req.params.id}, {...req.body}, {new: true})
         .then((excercise)=>{
             res.status(200).json(excercise)
         })

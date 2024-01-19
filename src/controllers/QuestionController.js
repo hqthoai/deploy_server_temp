@@ -42,7 +42,7 @@ const QuestionController = {
     },
 
     update: (req, res) => {
-        Question.findOneAndUpdate({_id: req.params.id}, ...req.body)
+        Question.findOneAndUpdate({_id: req.params.id}, {...req.body}, { new: true })
         .then((question)=>{
             res.status(200).json(question)
         })
